@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://ShakeCamera.gd" type="Script" id=1]
+[ext_resource path="res://PixelFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://MainGame.gd" type="Script" id=3]
+[ext_resource path="res://Target.gd" type="Script" id=4]
+[ext_resource path="res://PoppableCircle.shader" type="Shader" id=5]
+[ext_resource path="res://PNG/Default size/pattern02.png" type="Texture" id=6]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 5 )
+shader_param/color1 = Color( 0.101961, 0.0745098, 0.113725, 1 )
+shader_param/color2 = Color( 0.0588235, 0.0588235, 0.0588235, 1 )
+shader_param/zoom = 2.0
+shader_param/time_speed = 0.4
+shader_param/shakeable = true
+shader_param/pattern = ExtResource( 6 )
+
+[node name="MainGame" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2( 64, 114 )
+current = true
+script = ExtResource( 1 )
+target = NodePath("../Position2D")
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 64, 113.5 )
+script = ExtResource( 4 )
+
+[node name="Circles" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 3.0
+custom_fonts/font = ExtResource( 2 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
