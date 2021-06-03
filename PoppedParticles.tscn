@@ -1,27 +1,36 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://PoppableCircle.shader" type="Shader" id=1]
-[ext_resource path="res://PNG/Default size/pattern02.png" type="Texture" id=2]
+[ext_resource path="res://PNG/Default size/pattern24.png" type="Texture" id=2]
+[ext_resource path="res://circle.png" type="Texture" id=3]
+[ext_resource path="res://PoppedParticles.gd" type="Script" id=4]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
-shader_param/color1 = Color( 0.211765, 0.156863, 0.239216, 1 )
-shader_param/color2 = Color( 0.211765, 0.156863, 0.239216, 1 )
-shader_param/zoom = 1.0
+shader_param/color1 = Color( 1, 0.505882, 0.258824, 1 )
+shader_param/color2 = Color( 1, 0.309804, 0.411765, 1 )
+shader_param/dir = null
+shader_param/zoom = 100.0
 shader_param/time_speed = 0.0
 shader_param/shakeable = false
 shader_param/pattern = ExtResource( 2 )
 
-[sub_resource type="Curve" id=1]
+[sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="Gradient" id=3]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.994186, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=5]
+colors = PoolColorArray( 1, 0.854902, 0.270588, 1, 1, 0.854902, 0.270588, 0 )
+
 [node name="CPUParticles2D" type="CPUParticles2D"]
-material = SubResource( 2 )
+material = SubResource( 1 )
 emitting = false
-amount = 40
+amount = 20
 lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
@@ -37,5 +46,21 @@ damping = 48.88
 angle = 720.0
 angle_random = 1.0
 scale_amount = 30.0
-scale_amount_curve = SubResource( 1 )
+scale_amount_curve = SubResource( 2 )
 color_ramp = SubResource( 3 )
+script = ExtResource( 4 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 5
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource( 3 )
+emission_shape = 1
+emission_sphere_radius = 40.0
+gravity = Vector2( 0, 0 )
+scale_amount = 1.5
+scale_amount_random = 1.0
+scale_amount_curve = SubResource( 4 )
+color_ramp = SubResource( 5 )

@@ -26,8 +26,8 @@ void fragment(){
 
 [resource]
 shader = SubResource( 1 )
-shader_param/color1 = Color( 1, 0.972549, 0.929412, 1 )
-shader_param/color2 = Color( 0.45098, 0.792157, 0.545098, 1 )
+shader_param/color1 = Color( 0.286275, 0.905882, 0.92549, 1 )
+shader_param/color2 = Color( 1, 0.968627, 0.972549, 1 )
 shader_param/zoom = 3.0
 shader_param/time_speed = 0.1
 shader_param/shakeable = false

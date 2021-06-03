@@ -14,6 +14,7 @@ var texture_list = [preload("res://PNG/Default size/pattern03.png"),
 					preload("res://PNG/Default size/pattern11.png"),
 					preload("res://PNG/Default size/pattern16.png"),
 					preload("res://PNG/Default size/pattern84.png")]
+var dir_list = [Vector2(1,1),Vector2(-1,1),Vector2(-1,-1),Vector2(1,-1)]
 
 onready var camera = $Camera
 var first = true
@@ -31,6 +32,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	$Circles/Target.position = $Label.rect_size/2.0
 	pass
 	
 func spawn_new_circle():
@@ -42,6 +44,7 @@ func spawn_new_circle():
 		
 	cur_texture+=1 
 	$ColorRect.material.set_shader_param("pattern", texture_list[cur_texture%texture_list.size()])
+	$ColorRect.material.set_shader_param("dir", dir_list[cur_texture%dir_list.size()])
 	
 	score_label.text = str(score)
 	var new_circle = CircleTscn.instance()

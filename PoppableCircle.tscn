@@ -1,70 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://PoppableCircle.gd" type="Script" id=1]
 [ext_resource path="res://PoppableCircle.tres" type="Material" id=2]
-[ext_resource path="res://PNG/Default size/pattern70.png" type="Texture" id=3]
-
-[sub_resource type="Shader" id=1]
-code = "shader_type canvas_item;
-
-uniform sampler2D pattern;
-uniform vec4 color1 : hint_color = vec4(1.0);
-uniform vec4 color2 : hint_color = vec4(1.0);
-uniform float zoom = 20.0f;
-uniform float time_speed = 0.1f;
-
-uniform bool shakeable = false;
-
-void fragment(){
-	//SCREEN_UV
-	vec3 cur_val;
-	if (!shakeable)
-  		cur_val = step(.5, texture(pattern, fract(vec2(TIME*time_speed)+SCREEN_UV*zoom/(SCREEN_PIXEL_SIZE)*SCREEN_PIXEL_SIZE.x)).rgb);
-	else
-		cur_val = step(.5, texture(pattern, fract(vec2(TIME*time_speed)+UV*zoom/(SCREEN_PIXEL_SIZE)*SCREEN_PIXEL_SIZE.x)).rgb);
-	COLOR = vec4(cur_val,cur_val.r)*color1 + (vec4(1.0)-vec4(cur_val,0.0))*color2;
-	
-}"
-
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
-shader_param/color1 = Color( 1, 0.972549, 0.929412, 1 )
-shader_param/color2 = Color( 0.45098, 0.792157, 0.545098, 1 )
-shader_param/zoom = 3.0
-shader_param/time_speed = 0.1
-shader_param/shakeable = false
-shader_param/pattern = ExtResource( 3 )
-
-[sub_resource type="Shader" id=3]
-code = "shader_type canvas_item;
-
-uniform sampler2D pattern;
-uniform vec4 color1 : hint_color = vec4(1.0);
-uniform vec4 color2 : hint_color = vec4(1.0);
-uniform float zoom = 20.0f;
-uniform float time_speed = 0.1f;
-
-uniform bool shakeable = false;
-
-void fragment(){
-	//SCREEN_UV
-	vec3 cur_val;
-	if (!shakeable)
-  		cur_val = step(.5, texture(pattern, fract(vec2(TIME*time_speed)+SCREEN_UV*zoom/(SCREEN_PIXEL_SIZE)*SCREEN_PIXEL_SIZE.x)).rgb);
-	else
-		cur_val = step(.5, texture(pattern, fract(vec2(TIME*time_speed)+UV*zoom/(SCREEN_PIXEL_SIZE)*SCREEN_PIXEL_SIZE.x)).rgb);
-	COLOR = vec4(cur_val,cur_val.r)*color1 + (vec4(1.0)-vec4(cur_val,0.0))*color2;
-	
-}"
-
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
-shader_param/color1 = Color( 0.45098, 0.792157, 0.545098, 1 )
-shader_param/color2 = Color( 1, 0.972549, 0.929412, 1 )
-shader_param/zoom = 3.0
-shader_param/time_speed = 0.1
-shader_param/shakeable = false
-shader_param/pattern = ExtResource( 3 )
 
 [node name="PoppableCircle" type="Node2D"]
 script = ExtResource( 1 )
@@ -74,20 +11,57 @@ bad_color1 = Color( 0.878431, 0.121569, 0.247059, 1 )
 bad_color2 = Color( 1, 0.972549, 0.929412, 1 )
 good = false
 
-[node name="Rect3" type="ColorRect" parent="."]
-material = ExtResource( 2 )
+[node name="Rect4" type="ColorRect" parent="."]
 margin_left = -20.0
 margin_top = -20.0
 margin_right = 20.0
 margin_bottom = 20.0
 rect_rotation = 60.0
+rect_scale = Vector2( 1.1, 1.1 )
+rect_pivot_offset = Vector2( 20, 20 )
+color = Color( 1, 0.854902, 0.270588, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rect5" type="ColorRect" parent="."]
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+rect_rotation = 30.0
+rect_scale = Vector2( 1.1, 1.1 )
+rect_pivot_offset = Vector2( 20, 20 )
+color = Color( 1, 0.854902, 0.270588, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rect6" type="ColorRect" parent="."]
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+rect_scale = Vector2( 1.1, 1.1 )
+rect_pivot_offset = Vector2( 20, 20 )
+color = Color( 1, 0.854902, 0.270588, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rect1" type="ColorRect" parent="."]
+material = ExtResource( 2 )
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
 rect_pivot_offset = Vector2( 20, 20 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Rect2" type="ColorRect" parent="."]
-material = SubResource( 2 )
+material = ExtResource( 2 )
 margin_left = -20.0
 margin_top = -20.0
 margin_right = 20.0
@@ -98,12 +72,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Rect1" type="ColorRect" parent="."]
-material = SubResource( 4 )
+[node name="Rect3" type="ColorRect" parent="."]
+material = ExtResource( 2 )
 margin_left = -20.0
 margin_top = -20.0
 margin_right = 20.0
 margin_bottom = 20.0
+rect_rotation = 60.0
 rect_pivot_offset = Vector2( 20, 20 )
 __meta__ = {
 "_edit_use_anchors_": false
