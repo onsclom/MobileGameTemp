@@ -38,5 +38,6 @@ func shake():
 		rect_position.y = 0
 	
 func add_trauma(amount):
+	$Coin.play()
 	trauma = min(trauma + amount, 1.0)
 	

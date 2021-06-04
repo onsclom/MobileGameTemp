@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://ShakeCamera.gd" type="Script" id=1]
 [ext_resource path="res://PixelFont.tres" type="DynamicFont" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://PoppableCircle.shader" type="Shader" id=5]
 [ext_resource path="res://PNG/Default size/pattern02.png" type="Texture" id=6]
 [ext_resource path="res://LabelShake.gd" type="Script" id=7]
+[ext_resource path="res://sounds/explo.wav" type="AudioStream" id=8]
+[ext_resource path="res://sounds/coin.wav" type="AudioStream" id=9]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 5 )
@@ -35,13 +37,13 @@ __meta__ = {
 }
 
 [node name="Camera" type="Camera2D" parent="."]
-position = Vector2( 64, 114 )
+position = Vector2( 80, 141.5 )
 current = true
 script = ExtResource( 1 )
 target = NodePath("../Position2D")
 
 [node name="Position2D" type="Position2D" parent="."]
-position = Vector2( 64, 113.5 )
+position = Vector2( 64, 114 )
 script = ExtResource( 4 )
 
 [node name="Circles" type="Node2D" parent="."]
@@ -52,7 +54,7 @@ position = Vector2( 63.5, 10 )
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -207.0
+margin_bottom = -264.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 0.968627, 0.972549, 1 )
 custom_colors/font_outline_modulate = Color( 1, 0.854902, 0.270588, 1 )
@@ -66,3 +68,9 @@ script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Coin" type="AudioStreamPlayer" parent="Label"]
+stream = ExtResource( 9 )
+
+[node name="Explosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )

@@ -28,8 +28,6 @@ func _ready():
 	rng.randomize()
 	spawn_new_circle()
 	GameManager.score_label = $Label
-	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -41,7 +39,7 @@ func spawn_new_circle():
 		first = false
 	else:
 		$Camera.add_trauma(.9)
-		
+		$Explosion.play()
 		
 	cur_texture+=1 
 	$ColorRect.material.set_shader_param("pattern", texture_list[cur_texture%texture_list.size()])

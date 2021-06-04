@@ -30,10 +30,10 @@ GameManager="*res://GameManager.tscn"
 
 [display]
 
-window/size/width=128
-window/size/height=227
-window/size/test_width=320
-window/size/test_height=567
+window/size/width=160
+window/size/height=283
+window/size/test_width=1000
+window/size/test_height=1000
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
