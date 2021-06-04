@@ -27,6 +27,7 @@ var score = 0
 func _ready():
 	rng.randomize()
 	spawn_new_circle()
+	GameManager.score_label = $Label
 	pass # Replace with function body.
 
 
@@ -40,16 +41,15 @@ func spawn_new_circle():
 		first = false
 	else:
 		$Camera.add_trauma(.9)
-		score+=1
+		
 		
 	cur_texture+=1 
 	$ColorRect.material.set_shader_param("pattern", texture_list[cur_texture%texture_list.size()])
 	$ColorRect.material.set_shader_param("dir", dir_list[cur_texture%dir_list.size()])
 	
-	score_label.text = str(score)
 	var new_circle = CircleTscn.instance()
 	new_circle.position = Vector2(rng.randi_range(0, get_viewport().size.x), rng.randi_range(0, get_viewport().size.y))
-	new_circle.texture = texture_list[(cur_texture+texture_list.size()/2)%texture_list.size()]
+	new_circle.texture = texture_list[(cur_texture+texture_list.size()+1)%texture_list.size()]
 	$Circles.add_child(new_circle)
 	new_circle.connect("popped", self, "spawn_new_circle")
 	

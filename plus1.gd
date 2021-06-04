@@ -30,6 +30,8 @@ func _physics_process(delta):
 		position += diff * pow((1/diff.length()),2)*speed
 		diff = (target.position-position)
 		if diff.length() < 10:
+			GameManager.score += 1
+			GameManager.score_label.add_trauma(.8)
 			queue_free()
 	elif alive_time<wait_time:
 		position += rand_dir*(wait_time-alive_time)*pre_speed
