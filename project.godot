@@ -40,6 +40,9 @@ window/stretch/aspect="expand"
 [global]
 
 touch=false
+click=false
+tap=false
+touuch=false
 
 [input]
 

@@ -10,9 +10,7 @@ var main_game = preload("res://Main.tscn")
 func _ready():
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if Input.is_action_just_pressed("left_click"):
+	
+func _input(event):
+	if event is InputEventMouseButton and event.pressed and not event.is_echo() and event.button_index == BUTTON_LEFT:
 		get_tree().change_scene_to(main_game)
-	pass

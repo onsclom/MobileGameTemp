@@ -77,12 +77,18 @@ func _process(delta):
 	else:
 		time_spent_done += delta
 		
+		
 	if Input.is_action_just_pressed("left_click") and time_spent_done>game_over_required_time:
 		get_tree().reload_current_scene()
 		
 		
 	$ColorRect.material.set_shader_param("percentage", time_spent/time_to_play)
 	
+func _input(event):
+	if event is InputEventMouseButton and event.pressed and not event.is_echo() and event.button_index == BUTTON_LEFT:
+		if time_spent_done>game_over_required_time:
+			get_tree().reload_current_scene()
+
 func do_game_end():
 	for node in get_tree().get_nodes_in_group("circles"):
 		node.queue_free()
