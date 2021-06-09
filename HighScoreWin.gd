@@ -1,10 +1,10 @@
-extends Node
+extends RichTextLabel
 
-var score_label
-var score = 0
 
-var high_score = 0
-var prev_high_score = 0
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,9 +13,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if score_label:
-		score_label.text = str(score)
-	
-	if score>high_score:
-		high_score=score
-	pass
+	if GameManager.score > GameManager.prev_high_score:
+		visible = true
+	else:
+		visible = false

@@ -24,6 +24,7 @@ var time_alive = 0
 var sprout_speed = 3
 
 func _ready():
+	
 	scale.x = time_alive
 	scale.y = time_alive
 #	if good:

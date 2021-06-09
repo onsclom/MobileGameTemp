@@ -3,7 +3,9 @@
 [ext_resource path="res://PoppableCircle.gd" type="Script" id=1]
 [ext_resource path="res://PoppableCircle.tres" type="Material" id=2]
 
-[node name="PoppableCircle" type="Node2D"]
+[node name="PoppableCircle" type="Node2D" groups=[
+"circles",
+]]
 script = ExtResource( 1 )
 good_color1 = Color( 1, 0.972549, 0.929412, 1 )
 good_color2 = Color( 0.482353, 0.411765, 0.376471, 1 )

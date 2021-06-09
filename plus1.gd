@@ -4,24 +4,19 @@ var target
 var wait_time = 1.0
 var alive_time = 0
 
-var speed = 100
+var speed = 200
 var close_enough = 40
 
 var rng = RandomNumberGenerator.new()
 var rand_dir
 
-var pre_speed = .5
+var pre_speed = .25
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
 	rand_dir = Vector2(0,-1)
 	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 func _physics_process(delta):
 	alive_time += delta

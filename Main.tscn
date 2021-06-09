@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://ShakeCamera.gd" type="Script" id=1]
 [ext_resource path="res://PixelFont.tres" type="DynamicFont" id=2]
@@ -9,14 +9,23 @@
 [ext_resource path="res://LabelShake.gd" type="Script" id=7]
 [ext_resource path="res://sounds/explo.wav" type="AudioStream" id=8]
 [ext_resource path="res://sounds/coin.wav" type="AudioStream" id=9]
+[ext_resource path="res://PlayAgainText.gd" type="Script" id=10]
+[ext_resource path="res://sounds/tick.wav" type="AudioStream" id=11]
+[ext_resource path="res://sounds/tick_long.wav" type="AudioStream" id=12]
+[ext_resource path="res://HighScoreText.gd" type="Script" id=13]
+[ext_resource path="res://HighScoreWin.gd" type="Script" id=14]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 5 )
 shader_param/color1 = Color( 0.168627, 0.0588235, 0.329412, 1 )
 shader_param/color2 = Color( 0.670588, 0.121569, 0.396078, 1 )
+shader_param/color3 = Color( 1, 0.968627, 0.972549, 1 )
 shader_param/dir = Vector2( 1, 1 )
 shader_param/zoom = 2.0
 shader_param/time_speed = 0.4
+shader_param/percentage = -1.0
+shader_param/thickness = 0.01
+shader_param/scroller = true
 shader_param/shakeable = true
 shader_param/pattern = ExtResource( 6 )
 
@@ -51,7 +60,8 @@ script = ExtResource( 4 )
 [node name="Target" type="Position2D" parent="Circles"]
 position = Vector2( 63.5, 10 )
 
-[node name="Label" type="Label" parent="."]
+[node name="ScoreLabel" type="Label" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -264.0
@@ -69,8 +79,119 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Coin" type="AudioStreamPlayer" parent="Label"]
+[node name="Coin" type="AudioStreamPlayer" parent="ScoreLabel"]
 stream = ExtResource( 9 )
 
 [node name="Explosion" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+
+[node name="GameOverScreen" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HighScoreWin" type="RichTextLabel" parent="GameOverScreen"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -222.0
+custom_fonts/normal_font = ExtResource( 2 )
+custom_colors/font_color_shadow = Color( 0.168627, 0.0588235, 0.329412, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 1
+bbcode_enabled = true
+bbcode_text = "[rainbow sat=.5][wave][center]NEW 
+HIGH SCORE![/center][/wave]"
+text = "NEW 
+HIGH SCORE!"
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="GameOverScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.968627, 0.972549, 1 )
+custom_colors/font_outline_modulate = Color( 1, 0.854902, 0.270588, 1 )
+custom_colors/font_color_shadow = Color( 0.168627, 0.0588235, 0.329412, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 1
+text = "Press to play again..."
+align = 1
+valign = 1
+autowrap = true
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="GameOverScreen"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -64.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.968627, 0.972549, 1 )
+custom_colors/font_outline_modulate = Color( 1, 0.854902, 0.270588, 1 )
+custom_colors/font_color_shadow = Color( 0.168627, 0.0588235, 0.329412, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 1
+text = "High score:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="GameOverScreen"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -30.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.968627, 0.972549, 1 )
+custom_colors/font_outline_modulate = Color( 1, 0.854902, 0.270588, 1 )
+custom_colors/font_color_shadow = Color( 0.168627, 0.0588235, 0.329412, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 1
+text = "9999"
+align = 1
+valign = 1
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CountdownLabel" type="Label" parent="."]
+anchor_left = -0.039
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.24
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.968627, 0.972549, 1 )
+custom_colors/font_outline_modulate = Color( 1, 0.854902, 0.270588, 1 )
+custom_colors/font_color_shadow = Color( 0.168627, 0.0588235, 0.329412, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 1
+text = "9999"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
+[node name="Tick2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
